@@ -33,6 +33,18 @@ def hello_name(nm):
         head += "{}. {} ({})</font></h3>".format(i+1,title,url,url)
     return head
 
+@app.route('/user/<nm>/<sc>')
+def hello_section(nm,sc):
+    res = get_stories(sc)
+    head = render_template('user.html', name=nm, section=sc)
+    for i in range(5):
+        head += '<h3 style="text-indent:2.3em;">'
+        head += '<font size="2">'
+        url = res[i]['url']
+        title = res[i]['title']
+        head += "{}. {} ({})</font></h3>".format(i+1,title,url,url)
+    return head
+
 
 
 if __name__ == '__main__':
